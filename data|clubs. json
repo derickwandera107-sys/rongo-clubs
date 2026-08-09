@@ -1,321 +1,114 @@
-:root {
-  --ink: #16261C;
-  --ink-soft: #223A2B;
-  --paper: #F1EAD6;
-  --paper-dim: #E7DEC6;
-  --gold: #D9A441;
-  --gold-dark: #B4812C;
-  --clay: #A63D2F;
-  --clay-dark: #832F24;
-  --moss: #4C7A54;
-  --moss-dark: #3A5F41;
-  --ink-text: #1B1B16;
-  --cream-text: #F1EAD6;
-  --muted: #6B6552;
-
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Space Mono", "Courier New", monospace;
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-}
-
-body {
-  margin: 0;
-  background: var(--ink);
-  color: var(--cream-text);
-  font-family: var(--font-body);
-  line-height: 1.5;
-}
-
-a { color: inherit; }
-
-/* ---------- HERO ---------- */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 5rem 1.5rem 6rem;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(217,164,65,0.10), transparent 45%),
-    radial-gradient(circle at 85% 60%, rgba(166,61,47,0.14), transparent 50%),
-    var(--ink);
-  border-bottom: 1px solid rgba(241,234,214,0.12);
-}
-
-.hero-inner {
-  max-width: 780px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-.eyebrow {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.75rem;
-  color: var(--gold);
-  margin: 0 0 1.5rem;
-}
-
-.hero h1 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
-  line-height: 1.05;
-  margin: 0 0 1.5rem;
-  letter-spacing: -0.01em;
-}
-
-.hero-accent {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold);
-}
-
-.hero-sub {
-  font-size: 1.1rem;
-  max-width: 56ch;
-  color: rgba(241,234,214,0.82);
-  margin: 0 0 2.25rem;
-}
-
-.hero-cta {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--gold);
-  padding: 0.85rem 1.5rem;
-  border-radius: 3px;
-  font-weight: 700;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.hero-cta:hover { background: var(--cream-text); transform: translateY(-2px); }
-.hero-cta:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-
-.hero-pins { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-
-.floating-pin {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  opacity: 0.5;
-}
-.pin-1 { top: 18%; right: 12%; background: var(--clay); }
-.pin-2 { top: 62%; right: 22%; background: var(--moss); width: 7px; height: 7px; }
-.pin-3 { top: 40%; right: 6%; background: var(--gold); width: 6px; height: 6px; }
-
-/* ---------- BOARD / CONTROLS ---------- */
-
-.board-section {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 3.5rem 1.5rem 5rem;
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-}
-
-.search-wrap { flex: 1 1 260px; min-width: 220px; }
-
-#searchInput {
-  width: 100%;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 0.8rem 1rem;
-  border-radius: 4px;
-  border: 1px solid rgba(241,234,214,0.25);
-  background: rgba(241,234,214,0.06);
-  color: var(--cream-text);
-}
-#searchInput::placeholder { color: rgba(241,234,214,0.45); }
-#searchInput:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-  background: rgba(241,234,214,0.1);
-}
-
-.filter-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.filter-chip {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(241,234,214,0.25);
-  background: transparent;
-  color: rgba(241,234,214,0.75);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.filter-chip:hover { border-color: var(--gold); color: var(--cream-text); }
-.filter-chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
-.filter-chip.is-active {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.result-count {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: rgba(241,234,214,0.5);
-  margin: 0 0 2rem;
-}
-
-/* ---------- CLUB GRID / PINNED CARDS ---------- */
-
-.club-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem 1.75rem;
-}
-
-.club-card {
-  position: relative;
-  background: var(--paper);
-  color: var(--ink-text);
-  border-radius: 3px;
-  padding: 1.6rem 1.5rem 1.4rem;
-  box-shadow: 0 14px 26px rgba(0,0,0,0.28), 0 2px 0 rgba(0,0,0,0.05);
-  transform: rotate(var(--tilt, 0deg));
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.club-card:nth-child(3n+1) { --tilt: -1.1deg; }
-.club-card:nth-child(3n+2) { --tilt: 0.8deg; }
-.club-card:nth-child(3n+3) { --tilt: -0.5deg; }
-
-.club-card:hover,
-.club-card:focus-within {
-  transform: rotate(0deg) translateY(-4px);
-  box-shadow: 0 20px 34px rgba(0,0,0,0.34), 0 2px 0 rgba(0,0,0,0.05);
-}
-
-.club-card::before {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--pin-color, var(--clay));
-  box-shadow: 0 3px 4px rgba(0,0,0,0.35);
-}
-
-.club-card[data-category="academic"] { --pin-color: var(--gold-dark); }
-.club-card[data-category="culture"] { --pin-color: var(--clay-dark); }
-.club-card[data-category="service"] { --pin-color: var(--moss-dark); }
-
-.card-tag {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  padding: 0.25rem 0.55rem;
-  border-radius: 3px;
-  margin-bottom: 0.9rem;
-  color: var(--cream-text);
-  background: var(--pin-color, var(--clay));
-}
-
-.club-card h2 {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 0.4rem;
-}
-
-.club-tagline {
-  font-style: italic;
-  font-size: 0.92rem;
-  color: var(--muted);
-  margin: 0 0 0.9rem;
-}
-
-.club-desc {
-  font-size: 0.94rem;
-  margin: 0 0 1.1rem;
-  color: #33301F;
-}
-
-.club-meta {
-  border-top: 1px dashed rgba(27,27,22,0.25);
-  padding-top: 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  display: grid;
-  gap: 0.4rem;
-  color: #3D3A28;
-}
-
-.club-meta .meta-row { display: flex; gap: 0.5rem; }
-.club-meta .meta-label { color: var(--clay-dark); font-weight: 700; flex-shrink: 0; }
-
-.club-meta a { text-decoration: underline; text-decoration-color: rgba(166,61,47,0.4); }
-.club-meta a:focus-visible { outline: 2px solid var(--clay-dark); outline-offset: 2px; }
-
-.empty-state {
-  font-family: var(--font-mono);
-  color: rgba(241,234,214,0.6);
-  padding: 3rem 0;
-  text-align: center;
-}
-
-/* ---------- FOOTER ---------- */
-
-.site-footer {
-  text-align: center;
-  padding: 3rem 1.5rem 4rem;
-  border-top: 1px solid rgba(241,234,214,0.12);
-  font-size: 0.88rem;
-  color: rgba(241,234,214,0.55);
-}
-
-.site-footer p { margin: 0.3rem 0; }
-
-.footer-note code {
-  font-family: var(--font-mono);
-  background: rgba(241,234,214,0.1);
-  padding: 0.1rem 0.35rem;
-  border-radius: 3px;
-  font-size: 0.82em;
-}
-
-@media (max-width: 540px) {
-  .hero { padding: 3.5rem 1.25rem 4rem; }
-  .controls { flex-direction: column; align-items: stretch; }
-  .club-card { transform: none !important; }
-  .club-card:hover, .club-card:focus-within { transform: translateY(-2px) !important; }
-}
+[
+  {
+    "id": "scouting",
+    "name": "Scouting Club",
+    "category": "service",
+    "tagline": "Outdoor skills, leadership, and service to campus and community.",
+    "description": "Trains members in outdoor survival, first aid, and leadership through structured scouting activities. Runs community service projects, tree-planting drives, and camping expeditions, and prepares members for badge-based scouting achievements.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "sdgs",
+    "name": "SDGs Club",
+    "category": "service",
+    "tagline": "Turning the UN Sustainable Development Goals into campus action.",
+    "description": "Raises awareness of the 17 Sustainable Development Goals and runs practical campus projects around them — clean-up drives, climate action, gender equity campaigns, and partnerships with local community organizations working on sustainability.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "integrity",
+    "name": "Integrity Club",
+    "category": "service",
+    "tagline": "Building a culture of honesty and accountability on campus.",
+    "description": "Champions ethics, honesty, and anti-corruption values among students through talks, peer mentorship, and campaigns. Partners with national integrity and anti-corruption initiatives and encourages accountable leadership within student governance.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "geography",
+    "name": "Geography Club",
+    "category": "academic",
+    "tagline": "Fieldwork, maps, and hands-on environmental study.",
+    "description": "Organizes field trips, mapping and GIS practice, and environmental research projects for students with an interest in geography and earth sciences. Hosts inter-club quiz competitions and guest talks from environmental practitioners.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "kenyamun",
+    "name": "Kenya Model United Nations (KenyaMUN)",
+    "category": "academic",
+    "tagline": "Diplomacy, debate, and global affairs simulation.",
+    "description": "Trains students in diplomacy, public speaking, and international relations through Model United Nations simulations. Prepares delegates for regional and national MUN conferences and runs internal debate and resolution-writing sessions.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "polsci",
+    "name": "Political Science Club",
+    "category": "academic",
+    "tagline": "Debating governance, policy, and public affairs.",
+    "description": "A forum for discussing governance, law, and public policy through structured debates, mock parliament sessions, and guest lectures from political and legal practitioners. Open to students across all disciplines with an interest in civic affairs.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "chawakiro",
+    "name": "Chama cha Wanafunzi wa Kiswahili wa Rongo (CHAWAKIRO)",
+    "category": "culture",
+    "tagline": "Kuenzi lugha na utamaduni wa Kiswahili chuoni.",
+    "description": "Inakuza matumizi na uenzaji wa lugha ya Kiswahili kupitia mashairi, drama, na mijadala. Huandaa vipindi vya usomi na usaidizi wa kitaaluma kwa wanafunzi wanaosoma Kiswahili, na kushiriki mashindano ya lugha na fasihi.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  },
+  {
+    "id": "musicdrama",
+    "name": "Music and Drama Club",
+    "category": "culture",
+    "tagline": "Performance, talent, and campus entertainment.",
+    "description": "Home for singers, actors, and performers on campus. Runs choir practice, theatre productions, and talent showcases, and represents the university at regional drama and music festivals.",
+    "meetingTime": "Add meeting day/time",
+    "meetingPlace": "Add usual venue",
+    "patron": "Add patron/coordinator name",
+    "email": "Add email address",
+    "phone": "Add phone number",
+    "instagram": "",
+    "location": "Add office/meeting point on campus"
+  }
+]
