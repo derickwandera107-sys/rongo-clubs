@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rongo University Clubs Board</title>
+<meta name="description" content="Find every club at Rongo University, what they do, and how to reach them." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Rongo University &middot; Student Clubs Board</p>
+    <h1>Every club.<br />One board.<br /><span class="hero-accent">No more guessing.</span></h1>
+    <p class="hero-sub">
+      You just landed at Rongo. Somewhere on this campus there's a club for the debater, the singer,
+      the scout, the Kiswahili poet, and the future diplomat in you — you just haven't found their contact yet.
+      This board fixes that.
+    </p>
+    <a class="hero-cta" href="#board">Browse the board &darr;</a>
+  </div>
+  <div class="hero-pins" aria-hidden="true">
+    <span class="floating-pin pin-1"></span>
+    <span class="floating-pin pin-2"></span>
+    <span class="floating-pin pin-3"></span>
+  </div>
+</header>
+
+<main id="board" class="board-section">
+  <div class="controls">
+    <div class="search-wrap">
+      <input id="searchInput" type="text" placeholder="Search a club, e.g. 'debate' or 'music'..." aria-label="Search clubs" />
+    </div>
+    <div class="filter-wrap" role="group" aria-label="Filter clubs by category">
+      <button class="filter-chip is-active" data-filter="all">All clubs</button>
+      <button class="filter-chip" data-filter="academic">Academic &amp; Debate</button>
+      <button class="filter-chip" data-filter="culture">Culture &amp; Arts</button>
+      <button class="filter-chip" data-filter="service">Service &amp; Values</button>
+    </div>
+  </div>
+
+  <p id="resultCount" class="result-count"></p>
+
+  <div id="clubGrid" class="club-grid" aria-live="polite"></div>
+
+  <p id="emptyState" class="empty-state" hidden>
+    No club matches that search. Try a different word, or clear the filter above.
+  </p>
+</main>
+
+<footer class="site-footer">
+  <p>Built by students, for students, at Rongo University.</p>
+  <p class="footer-note">Run a club and don't see it here, or need your details corrected? Speak to your Dean of Students' office about getting it added to <code>data/clubs.json</code>.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
